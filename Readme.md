@@ -99,7 +99,7 @@ Aplikacja oczekuje pliku cv_data.json w głównym katalogu programu. Poniżej zn
     }
   ],
   "Languages": [
-    "Polski (Oczojczysty)",
+    "Polski (Ojczysty)",
     "Angielski (C1 - Zaawansowany)"
   ]
 }
