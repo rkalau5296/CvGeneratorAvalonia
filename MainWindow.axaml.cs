@@ -3,6 +3,8 @@ using System.IO;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
+using CvGeneratorAvalonia.Models;
+using CvGeneratorAvalonia.Templates;
 using Newtonsoft.Json;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
@@ -64,13 +66,19 @@ namespace CvGeneratorAvalonia
                     return;
                 }
 
-                // Generowanie pliku PDF w tym samym folderze, co plik JSON
+                ICvTemplate selectedTemplate = CbTemplates?.SelectedItem switch
+                {
+                    ComboBoxItem { Tag: "ModernCream" } => new ModernCreamTemplate(),
+                    ComboBoxItem { Tag: "Executive" } => new ExecutiveTemplate(),
+                    _ => new ModernCreamTemplate()
+                };
+
                 var directory = Path.GetDirectoryName(_selectedFilePath);
                 var outputPath = string.IsNullOrEmpty(directory)
                     ? "moje_cv.pdf"
                     : Path.Combine(directory, "moje_cv.pdf");
 
-                var document = new CvDocument(cvData);
+                var document = new CvDocument(cvData, selectedTemplate);
                 document.GeneratePdf(outputPath);
 
                 TxtStatus.Foreground = Avalonia.Media.Brushes.Green;

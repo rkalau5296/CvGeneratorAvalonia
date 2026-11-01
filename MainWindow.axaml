@@ -2,15 +2,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="CvGeneratorAvalonia.MainWindow"
         Title="CV PDF Generator (Avalonia)"
-        Width="600" Height="250"
+        Width="600" Height="310"
         WindowStartupLocation="CenterScreen">
-
 	<StackPanel Margin="20" Spacing="15">
 		<TextBlock Text="Generator CV do PDF"
                    FontSize="20"
                    FontWeight="Bold"
                    HorizontalAlignment="Center"/>
-
 		<Grid ColumnDefinitions="*, Auto">
 			<TextBox Name="TxtFilePath"
                      PlaceholderText="Wybierz plik cv_data.json..."
@@ -20,7 +18,10 @@
                     Click="BtnBrowse_Click"
                     Grid.Column="1"/>
 		</Grid>
-
+		<ComboBox Name="CbTemplates" SelectedIndex="0" HorizontalAlignment="Stretch">
+			<ComboBoxItem Content="Modern Cream" Tag="ModernCream"/>
+			<ComboBoxItem Content="Executive" Tag="Executive"/>
+		</ComboBox>
 		<Button Content="Generuj PDF"
                 Click="BtnGenerate_Click"
                 HorizontalAlignment="Stretch"
@@ -29,7 +30,6 @@
                 Background="#007ACC"
                 Foreground="White"
                 FontWeight="Bold"/>
-
 		<TextBlock Name="TxtStatus"
                    Foreground="Green"
                    HorizontalAlignment="Center"/>

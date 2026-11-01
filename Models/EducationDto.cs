@@ -1,4 +1,4 @@
-﻿namespace CvGeneratorAvalonia;
+﻿namespace CvGeneratorAvalonia.Models;
 
 public class EducationDto
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CvGeneratorAvalonia;
+namespace CvGeneratorAvalonia.Models;
 
 public class CvData
 {
