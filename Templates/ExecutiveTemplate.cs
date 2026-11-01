@@ -21,9 +21,9 @@ namespace CvGeneratorAvalonia.Templates
                     row.ConstantItem(180).Background("#2C3E50").Padding(20).Column(col =>
                     {
                         col.Item().Text("CONTACT").FontColor("#FFFFFF").FontSize(11).Bold();
-                        col.Item().PaddingTop(8).Text(data.Email).FontColor("#ECF0F1").FontSize(8.5f);
-                        col.Item().Text(data.Phone).FontColor("#ECF0F1").FontSize(8.5f);
-                        col.Item().Text(data.Location).FontColor("#ECF0F1").FontSize(8.5f);
+                        col.Item().PaddingTop(8).Text($"✉  {data.Email}").FontColor("#ECF0F1").FontSize(8.5f);
+                        col.Item().Text($"📞  {data.Phone}").FontColor("#ECF0F1").FontSize(8.5f);
+                        col.Item().Text($"📍  {data.Location}").FontColor("#ECF0F1").FontSize(8.5f);
 
                         if (data.Skills != null && data.Skills.Count > 0)
                         {
@@ -54,6 +54,19 @@ namespace CvGeneratorAvalonia.Templates
                                 col.Item().PaddingTop(4).Text($"- {hobby}").FontColor("#ECF0F1").FontSize(8.5f);
                             }
                         }
+
+                        if (data.Education != null && data.Education.Count > 0)
+                        {
+                            col.Item().PaddingVertical(15).LineHorizontal(1).LineColor("#34495E");
+                            col.Item().Text("EDUCATION").FontColor("#FFFFFF").FontSize(11).Bold();
+                            foreach (var edu in data.Education)
+                            {
+                                col.Item().PaddingTop(6);
+                                col.Item().Text(edu.Institution).FontColor("#FFFFFF").FontSize(9f).Bold();
+                                col.Item().PaddingTop(2).Text(edu.Degree).FontColor("#BDC3C7").FontSize(8.5f);
+                                col.Item().PaddingTop(2).Text(edu.Period).FontColor("#95A5A6").FontSize(8f);
+                            }
+                        }
                     });
 
                     row.RelativeItem().Background("#FFFFFF").Padding(25).Column(col =>
@@ -78,7 +91,11 @@ namespace CvGeneratorAvalonia.Templates
                             {
                                 col.Item().Row(r =>
                                 {
-                                    r.RelativeItem().Text($"{exp.Position} | {exp.Company}").Bold().FontSize(9.5f).FontColor("#2C3E50");
+                                    r.RelativeItem().Column(c =>
+                                    {
+                                        c.Item().Text(exp.Company).Bold().FontSize(9.5f).FontColor("#2C3E50");
+                                        c.Item().PaddingTop(2).Text(exp.Position).FontSize(9f).FontColor("#444444");
+                                    });
                                     r.ConstantItem(95).AlignRight().Text(exp.Period).FontSize(8.5f).FontColor("#7F8C8D");
                                 });
 
@@ -99,27 +116,7 @@ namespace CvGeneratorAvalonia.Templates
                             }
 
                             col.Item().PaddingVertical(5).LineHorizontal(0.5f).LineColor("#BDC3C7");
-                        }
-
-                        if (data.Education != null && data.Education.Count > 0)
-                        {
-                            col.Item().PaddingTop(5).Text("EDUCATION").FontSize(12).Bold().FontColor("#2C3E50");
-                            col.Item().PaddingTop(6);
-
-                            foreach (var edu in data.Education)
-                            {
-                                col.Item().Row(r =>
-                                {
-                                    r.RelativeItem().Column(c =>
-                                    {
-                                        c.Item().Text(edu.Institution).Bold().FontSize(9.5f).FontColor("#2C3E50");
-                                        c.Item().PaddingTop(2).Text(edu.Degree).FontSize(9f).FontColor("#7F8C8D");
-                                    });
-                                    r.ConstantItem(95).AlignRight().Text(edu.Period).FontSize(8.5f).FontColor("#7F8C8D");
-                                });
-                                col.Item().PaddingBottom(6);
-                            }
-                        }
+                        }                        
                     });
                 });
             });
