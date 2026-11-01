@@ -20,11 +20,6 @@ namespace CvGeneratorAvalonia.Templates
                 {
                     row.ConstantItem(180).Background("#2C3E50").Padding(20).Column(col =>
                     {
-                        col.Item().Text(data.FullName).FontColor("#FFFFFF").FontSize(16).Bold();
-                        col.Item().PaddingTop(5).Text(data.Title).FontColor("#BDC3C7").FontSize(10);
-
-                        col.Item().PaddingVertical(15).LineHorizontal(1).LineColor("#34495E");
-
                         col.Item().Text("CONTACT").FontColor("#FFFFFF").FontSize(11).Bold();
                         col.Item().PaddingTop(8).Text(data.Email).FontColor("#ECF0F1").FontSize(8.5f);
                         col.Item().Text(data.Phone).FontColor("#ECF0F1").FontSize(8.5f);
@@ -63,6 +58,10 @@ namespace CvGeneratorAvalonia.Templates
 
                     row.RelativeItem().Background("#FFFFFF").Padding(25).Column(col =>
                     {
+                        col.Item().Text(data.FullName).FontColor("#1A252F").FontSize(24).Bold();
+                        col.Item().PaddingTop(2).Text(data.Title).FontColor("#2980B9").FontSize(13).SemiBold();
+                        col.Item().PaddingVertical(12).LineHorizontal(2).LineColor("#2980B9");
+
                         if (!string.IsNullOrEmpty(data.Summary))
                         {
                             col.Item().Text("ABOUT ME").FontSize(12).Bold().FontColor("#2C3E50");
@@ -111,7 +110,11 @@ namespace CvGeneratorAvalonia.Templates
                             {
                                 col.Item().Row(r =>
                                 {
-                                    r.RelativeItem().Text($"{edu.Degree} | {edu.Institution}").Bold().FontSize(9.5f).FontColor("#2C3E50");
+                                    r.RelativeItem().Column(c =>
+                                    {
+                                        c.Item().Text(edu.Institution).Bold().FontSize(9.5f).FontColor("#2C3E50");
+                                        c.Item().PaddingTop(2).Text(edu.Degree).FontSize(9f).FontColor("#7F8C8D");
+                                    });
                                     r.ConstantItem(95).AlignRight().Text(edu.Period).FontSize(8.5f).FontColor("#7F8C8D");
                                 });
                                 col.Item().PaddingBottom(6);
